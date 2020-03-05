@@ -12,12 +12,11 @@ module.exports = {
   policy: ({ ipList }) => {
     return async (req, res, next) => {
       try {
-        const ip = req.connection.remoteAddress;
-        if (ipList.includes(ip)){
-          next()
-          return
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        if (!ipList.includes(ip)) {
+          res.sendStatus(401);
+          return;
         }
-        res.sendStatus(401);
       } catch (e) {
         console.error('Error in ip-whitelist policy:', e.error)
         res.sendStatus(500)
