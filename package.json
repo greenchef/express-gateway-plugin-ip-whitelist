@@ -1,0 +1,8 @@
+{
+  "name": "express-gateway-plugin-ip-whitelist",
+  "version": "1.2.3",
+  "main": "manifest.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+  }
+}
